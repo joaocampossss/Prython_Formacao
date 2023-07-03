@@ -12,14 +12,17 @@
 cidades = ['Salvador', 'Ubatuba', 'Belo Horizonte']
 abreviações = ['BA', 'SP', 'MG', 'RJ']
 
-def agregação(c):
-    nova_lista = []
-    def interna(a):
-        nova_lista = [(c, a)]
-    return interna
+
+def cidade(c):
+    def abreviação(a):
+        novalista = (c, a)
+        return novalista
+    return abreviação
+
+lista=[]
 
 for c in cidades:
-    agregação(c)
+    teste = cidade(c)
+    lista.append(teste(abreviações.pop(0)))
 
-
-
+print(lista)
