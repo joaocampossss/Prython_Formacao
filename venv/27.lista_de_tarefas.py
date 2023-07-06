@@ -31,24 +31,37 @@ def listar_lista(lista):
 
 
 def desfazer_ultimo(lista, lista_cache):
-    desfez = lista.pop()
-    lista_cache.append(desfez)
+    if verificar_se_lista_esta_vazia(lista):
+        print('Sem Tarefas para Desfazer')
+        return
+    desfazer = lista.pop()
+    lista_cache.append(desfazer)
+    listar_lista(todo)
     return lista, lista_cache
 
+def refazer_ultimo(lista, lista_cache):
+    if verificar_se_lista_esta_vazia(lista_cache):
+        print('Sem Tarefas para Refazer')
+        return
+    refazer = lista_cache.pop()
+    lista.append(refazer)
+    listar_lista(todo)
+    return lista, lista_cache
 
 while True:
     comando_ou_tarefa = input(
-        'Comandos: listar, desfazer, refazer, clear\nInsira uma tarefa ou comando (e para sair): ')
+        'Comandos: listar, desfazer, refazer, cls\nInsira uma tarefa ou comando (e para sair): ')
     if comando_ou_tarefa == 'e':
         break
     elif comando_ou_tarefa == 'listar':
         listar_lista(todo)
-        continue
     elif comando_ou_tarefa == 'desfazer':
         desfazer_ultimo(todo, todo_cache)
+    elif comando_ou_tarefa == 'refazer':
+        refazer_ultimo(todo, todo_cache)
+    elif comando_ou_tarefa == 'cls':
+        os.system('cls')
     else:
         todo.append(comando_ou_tarefa)
-    
-    listar_lista(todo)
+        listar_lista(todo)
 
-print(todo_cache)
