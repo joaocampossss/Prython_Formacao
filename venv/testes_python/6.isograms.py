@@ -13,4 +13,4 @@ print(is_isogram('aba'))
 print(is_isogram(''))
 
 def is_isogram(string):
-    return len(string) == len(set(string.lower()))
+    return len(string) == len(set(string.lower())) 
